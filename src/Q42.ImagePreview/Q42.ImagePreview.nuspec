@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package>
+  <metadata>
+    <id>Q42.ImagePreview</id>
+    <version>0.1.0</version>
+    <summary>Open source library for creating image previews.</summary>
+    <description><![CDATA[Open source library for creating image previews.]]></description>
+    <authors>Tim van Stenis, Q42</authors>
+    <tags>image preview</tags>
+    <language>en-US</language> 
+    <projectUrl>https://github.com/Q42/Q42.ImagePreview.Net</projectUrl>
+    <iconUrl>https://nugetgallery.blob.core.windows.net/icons/DotLessMinification.0.42.1.png</iconUrl>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.Drawing"  />
+    </frameworkAssemblies>
+  </metadata>
+</package>
+
