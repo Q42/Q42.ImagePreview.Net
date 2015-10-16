@@ -9,25 +9,43 @@ using System.Runtime.Remoting.Messaging;
 
 namespace Q42.ImagePreview
 {
-  public static class PreviewImageConverter
+  public static class ImagePreviewConverter
   {
     private static readonly byte[] SOF0Pattern = { 0xFF, 0xC0 };
     private static readonly byte[] SOSPattern = { 0xFF, 0xDA };
     private const int HeaderSizeLength = 4;
 
-    public static string Base64Image(byte[] header, byte[] body)
+    private static byte[] header;
+    public static byte[] Header
     {
-      var indexC0 = IndexOfPattern(header, SOF0Pattern);
+      get
+      {
+        if (header != null)        
+          return header;        
+
+        var bitmap = new Bitmap(40, 40);
+        var preview = CreatePreviewImage(bitmap);
+        if (!preview.HasValue)        
+          throw new ImagePreviewException("Something went wrong generating the header");
+
+        return header = preview.Value.Header;
+      }
+    }
+
+    public static string Base64ImageFromBody(byte[] body)
+    {
+      var indexC0 = IndexOfPattern(Header, SOF0Pattern);
       if (!indexC0.HasValue)
         return null;
 
-      var headerSizeIndexStart = indexC0.Value + 5;
+      var headerSizeIndexStart = indexC0.Value + 5;   
+        
 
       var bytes = new[]
       {
-        header.Take(headerSizeIndexStart).ToArray(),
+        Header.Take(headerSizeIndexStart).ToArray(),
         body.Take(HeaderSizeLength).ToArray(),
-        header.Skip(headerSizeIndexStart).Take(header.Length - headerSizeIndexStart).ToArray(),
+        Header.Skip(headerSizeIndexStart).Take(Header.Length - headerSizeIndexStart).ToArray(),
         body.Skip(HeaderSizeLength).Take(body.Length - HeaderSizeLength).ToArray()
       }.SelectMany(z => z).ToArray();
        

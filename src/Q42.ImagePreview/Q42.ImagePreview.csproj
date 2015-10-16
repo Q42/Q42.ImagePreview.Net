@@ -40,8 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PreviewImageConverter.cs" />
+    <Compile Include="ImagePreviewException.cs" />
     <Compile Include="PreviewImage.cs" />
+    <Compile Include="ImagePreviewConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
