@@ -41,8 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ImagePreviewException.cs" />
-    <Compile Include="PreviewImage.cs" />
     <Compile Include="ImagePreviewConverter.cs" />
+    <Compile Include="ImagePreview.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
