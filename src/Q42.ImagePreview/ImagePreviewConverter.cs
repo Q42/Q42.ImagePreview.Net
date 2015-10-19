@@ -59,14 +59,15 @@ namespace Q42.ImagePreview
       if (!indexC0.HasValue)
         return null;
 
+      const int versionIndexLength = 1;
       var headerSizeIndexStart = indexC0.Value + 5;
 
       return new[]
       {
         Header.Take(headerSizeIndexStart).ToArray(),
-        body.Skip(1).Take(HeaderSizeLength).ToArray(),
+        body.Skip(versionIndexLength).Take(HeaderSizeLength).ToArray(),
         Header.Skip(headerSizeIndexStart).Take(Header.Length - headerSizeIndexStart).ToArray(),
-        body.Skip(1 + HeaderSizeLength).Take(body.Length - HeaderSizeLength - 1).ToArray()
+        body.Skip(versionIndexLength + HeaderSizeLength).Take(body.Length - HeaderSizeLength - versionIndexLength).ToArray()
       }.SelectMany(z => z).ToArray();      
     }
 
