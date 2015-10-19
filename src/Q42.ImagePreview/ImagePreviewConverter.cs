@@ -10,6 +10,11 @@ namespace Q42.ImagePreview
 {
   public static class ImagePreviewConverter
   {
+    /// <summary>
+    /// Current version
+    /// </summary>
+    private const byte Version = 1;
+
     private static readonly byte[] SOF0Pattern = { 0xFF, 0xC0 };
     private static readonly byte[] SOSPattern = { 0xFF, 0xDA };
     private const int HeaderSizeLength = 4;
@@ -59,9 +64,9 @@ namespace Q42.ImagePreview
       return new[]
       {
         Header.Take(headerSizeIndexStart).ToArray(),
-        body.Take(HeaderSizeLength).ToArray(),
+        body.Skip(1).Take(HeaderSizeLength).ToArray(),
         Header.Skip(headerSizeIndexStart).Take(Header.Length - headerSizeIndexStart).ToArray(),
-        body.Skip(HeaderSizeLength).Take(body.Length - HeaderSizeLength).ToArray()
+        body.Skip(1 + HeaderSizeLength).Take(body.Length - HeaderSizeLength - 1).ToArray()
       }.SelectMany(z => z).ToArray();      
     }
 
@@ -111,12 +116,7 @@ namespace Q42.ImagePreview
         graphics.InterpolationMode = InterpolationMode.Low;
         graphics.SmoothingMode = SmoothingMode.None;
         graphics.PixelOffsetMode = PixelOffsetMode.None;
-
-        using (var wrapMode = new ImageAttributes())
-        {
-          wrapMode.SetWrapMode(WrapMode.TileFlipXY);
-          graphics.DrawImage(originalImage, destinationRect, 0, 0, originalImage.Width, originalImage.Height, GraphicsUnit.Pixel, wrapMode);
-        }
+        graphics.DrawImage(originalImage, destinationRect, 0, 0, originalImage.Width, originalImage.Height, GraphicsUnit.Pixel);        
       }
 
       using (var memStream = new System.IO.MemoryStream())
@@ -157,6 +157,7 @@ namespace Q42.ImagePreview
 
       var body = new[]
       {
+        new [] { Version },
         image.Skip(headerSizeIndexStart).Take(HeaderSizeLength).ToArray(),
         image.Skip(indexBodyStart.Value).Take(image.Length - indexBodyStart.Value).ToArray()
       }.SelectMany(arr => arr).ToArray();
