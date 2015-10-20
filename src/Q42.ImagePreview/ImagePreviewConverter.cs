@@ -112,11 +112,11 @@ namespace Q42.ImagePreview
 
       using (var graphics = Graphics.FromImage(destinationImage))
       {
-        graphics.CompositingMode = CompositingMode.SourceCopy;
-        graphics.CompositingQuality = CompositingQuality.HighQuality;
+        graphics.CompositingMode = CompositingMode.SourceCopy;            
+        graphics.CompositingQuality = CompositingQuality.HighSpeed;
         graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
-        graphics.SmoothingMode = SmoothingMode.HighQuality;
-        graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
+        graphics.SmoothingMode = SmoothingMode.None;
+        graphics.PixelOffsetMode = PixelOffsetMode.None;
         graphics.DrawImage(originalImage, destinationRect, 0, 0, originalImage.Width, originalImage.Height, GraphicsUnit.Pixel);        
       }
 
@@ -127,7 +127,7 @@ namespace Q42.ImagePreview
           throw new ImagePreviewException("Jpeg decoder not found");
 
         var encodingParams = new EncoderParameters(1);
-        encodingParams.Param[0] = new EncoderParameter(Encoder.Quality, 80L);
+        encodingParams.Param[0] = new EncoderParameter(Encoder.Quality, 70L);
 
         destinationImage.Save(memStream, encoder, encodingParams);
 
