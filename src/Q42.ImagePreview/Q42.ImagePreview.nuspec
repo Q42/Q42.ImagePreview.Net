@@ -5,7 +5,7 @@
     <version>0.1.0</version>
     <summary>Open source library for creating image previews.</summary>
     <description><![CDATA[Open source library for creating image previews.]]></description>
-    <authors>Tim van Stenis, Q42</authors>
+    <authors>Tim van Steenis, Q42</authors>
     <tags>image preview</tags>
     <language>en-US</language> 
     <projectUrl>https://github.com/Q42/Q42.ImagePreview.Net</projectUrl>
