@@ -6,6 +6,8 @@ Example: https://www.youtube.com/watch?v=oWqm590NFfg
 
 Read this blog for more details.
 
+For the iOS clients.
+
 ## Install
 
 Include the NuGet package
@@ -17,9 +19,9 @@ Include the NuGet package
     var image = Image.FromFile("[path to your image]");
     var body = ImagePreviewConverter.CreateImagePreview(image);
 
-Store the body (byte[]). This is the information that you can send to your clients.
+Store the body (`byte[]`). This is the information that you can send to your clients.
 
-## Render the image from body
+## Render the image from the body
 
     ImagePreviewConverter.Base64ImageFromBody(body)
     
