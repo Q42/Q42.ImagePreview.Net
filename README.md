@@ -2,8 +2,6 @@
 
 Server & Client component for creating and rendering ~200 byte images (25% of original preview size).
 
-Read this blog for more details.
-
 For the iOS clients.
 
 ## Install
