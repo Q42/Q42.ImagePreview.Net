@@ -1,8 +1,6 @@
 # Q42.ImagePreview.Net
 
-Server & Client component for creating and rendering ~200 byte images.
-
-Example: https://www.youtube.com/watch?v=oWqm590NFfg
+Server & Client component for creating and rendering ~200 byte images (25% of original preview size).
 
 Read this blog for more details.
 
