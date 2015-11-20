@@ -2,7 +2,7 @@
 
 Server & Client component for creating and rendering ~200 byte images (25% of original preview size).
 
-Look at [this blog post](http://q42.com/blog/post/133591843068/the-imagepreview-library-render-previews-with) for more details.
+Look at [this blog post](http://q42.com/blog/post/133591843068/imagepreview-library) for more details.
 
 For the iOS clients.
 
